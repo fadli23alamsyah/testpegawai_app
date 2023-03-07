@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:pegawaiediites_app/screens/details_employee.dart';
+import 'package:pegawaiediites_app/screens/details_employee_screen.dart';
 import 'package:pegawaiediites_app/screens/widgets/item_employee.dart';
 
 class EmployeeScreen extends StatelessWidget {
@@ -20,7 +19,7 @@ class EmployeeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          ItemEmployee(onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailsEmployee()))),
+          ItemEmployee(onClick: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailsEmployeeScreen()))),
           ItemEmployee(onClick: (){debugPrint('object2');}),
         ],
       ),
