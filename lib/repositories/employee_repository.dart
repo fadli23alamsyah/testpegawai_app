@@ -21,6 +21,7 @@ class EmployeeRepository {
         .get().then((QuerySnapshot querySnapshot) {
           final json = querySnapshot.docs[0];
           return EmployeeModel(
+            id: json.id,
             name: json["name"] ?? '',
             birth: json["birth"] ?? '',
             position: json["position"] ?? '',
@@ -34,6 +35,16 @@ class EmployeeRepository {
       return employee;
     }catch(error){
       return null;
+    }
+  }
+
+  Future<bool> update(EmployeeModel model) async{
+    try{
+      await FirebaseFirestore.instance
+      .collection('employee').doc(model.id).update(model.toJson());
+      return true;
+    }catch(error){
+      return false;
     }
   }
 

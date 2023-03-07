@@ -6,6 +6,7 @@ import 'package:pegawaiediites_app/screens/home_screen.dart';
 import 'package:pegawaiediites_app/screens/login_screen.dart';
 import 'package:pegawaiediites_app/screens/register_screen.dart';
 import 'package:pegawaiediites_app/screens/splash_screen.dart';
+import 'package:pegawaiediites_app/screens/update_profile_screen.dart';
 
 class Routes {
   static const initialRoute = RouteName.splashScreen;
@@ -34,6 +35,10 @@ class Routes {
     GetPage(
       name: RouteName.detailsEmployeeScreen,
       page: () => const DetailsEmployeeScreen(),
+    ),
+    GetPage(
+      name: RouteName.updateProfileScreen,
+      page: () => const UpdateProfileScreen(),
     ),
   ];
 }

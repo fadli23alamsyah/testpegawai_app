@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegawaiediites_app/controllers/home_controller.dart';
 import 'package:pegawaiediites_app/screens/employee_screen.dart';
-import 'package:pegawaiediites_app/screens/update_profile.dart';
+import 'package:pegawaiediites_app/screens/update_profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -44,16 +44,17 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  height: 18,
-                  width: 18,
-                  decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(50),
-                      border: Border.all(
-                        color: Colors.white60,
-                        width: 2,
-                      )),
+                Obx(() => Container(
+                    height: 18,
+                    width: 18,
+                    decoration: BoxDecoration(
+                        color: controller.status.value ? Colors.green : Colors.red,
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(
+                          color: Colors.white60,
+                          width: 2,
+                        )),
+                  ),
                 ),
               ],
             ),
@@ -79,10 +80,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 )
                 : ElevatedButton(
-                  onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const UpdateProfile())),
+                  onPressed: () => controller.updateClick(),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(14),
                   ),
