@@ -8,13 +8,13 @@ class SharedPreferenceService {
     sharedPreferences = await SharedPreferences.getInstance();
   }
 
-  void setSharedPref(SharedPrefModel sharedPref){
+  static void setSharedPref(SharedPrefModel sharedPref){
     sharedPreferences.setString('name', sharedPref.name!);
     sharedPreferences.setString('email', sharedPref.email!);
     sharedPreferences.setString('role', sharedPref.role!);
   }
 
-  SharedPrefModel? getSharedPref(){
+  static SharedPrefModel? getSharedPref(){
     if(sharedPreferences.getString('email') != null){
       return SharedPrefModel(
         name: sharedPreferences.getString('name'),
@@ -26,7 +26,7 @@ class SharedPreferenceService {
     return null;
   }
 
-  void removeSharedPref(){
+  static void removeSharedPref(){
     sharedPreferences.remove('name');
     sharedPreferences.remove('email');
     sharedPreferences.remove('role');

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pegawaiediites_app/controllers/home_controller.dart';
 import 'package:pegawaiediites_app/screens/employee_screen.dart';
 import 'package:pegawaiediites_app/screens/update_profile.dart';
 
@@ -7,6 +9,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(HomeController());
+
     return Scaffold(
       body: Column(
         children: [
@@ -22,18 +26,24 @@ class HomeScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                RichText(
-                    text: const TextSpan(children: [
-                  TextSpan(
-                    text: 'Halo, \n',
+                Obx(
+                  () => RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Halo, \n',
+                        ),
+                        TextSpan(
+                          text: controller.user.value.name,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  TextSpan(
-                      text: 'User',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                      )),
-                ])),
+                ),
                 Container(
                   height: 18,
                   width: 18,
@@ -52,8 +62,12 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
-                ElevatedButton(
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const EmployeeScreen())),
+                controller.user.value.role == 'admin' 
+                ? ElevatedButton(
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const EmployeeScreen())),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(14),
                   ),
@@ -63,10 +77,12 @@ class HomeScreen extends StatelessWidget {
                       Text('Pegawai')
                     ],
                   ),
-                ),
-                const SizedBox(width: 8),
-                ElevatedButton(
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfile())),
+                )
+                : ElevatedButton(
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const UpdateProfile())),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(14),
                   ),
@@ -79,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 ElevatedButton(
-                  onPressed: (){},
+                  onPressed: () => controller.logoutClick(),
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(14),
                   ),
@@ -93,7 +109,6 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          
         ],
       ),
     );

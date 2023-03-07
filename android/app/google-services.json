@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "532846025722",
+    "project_id": "test-ptedii-flutter",
+    "storage_bucket": "test-ptedii-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532846025722:android:02adc0b7d2a48d47616243",
+        "android_client_info": {
+          "package_name": "com.example.pegawaiediites_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "532846025722-15ea9cp10hc3c1tsjskb1c6dm2aa0qp3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAWwu5GT9-5bkHmMk5ii5iuVxexQmvHVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "532846025722-15ea9cp10hc3c1tsjskb1c6dm2aa0qp3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

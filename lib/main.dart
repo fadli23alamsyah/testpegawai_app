@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:pegawaiediites_app/routes/routes.dart';
 import 'package:pegawaiediites_app/services/shared_preference_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await SharedPreferenceService.getInit();
   runApp(const MyApp());
 }
