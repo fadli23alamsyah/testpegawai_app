@@ -1,25 +1,41 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pegawaiediites_app/models/employee_model.dart';
 import 'package:pegawaiediites_app/models/sharedpref_model.dart';
 import 'package:pegawaiediites_app/models/user_login_request.dart';
+import 'package:pegawaiediites_app/models/user_register_request.dart';
+import 'package:pegawaiediites_app/repositories/employee_repository.dart';
 import 'package:pegawaiediites_app/repositories/user_repository.dart';
 
 class UserService {
 
-  Future register(UserLoginRequest user) async{
+  Future<String> register(UserRegisterRequest user) async{
     try {
       final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: user.email!,
         password: user.password!,
-      );
+      ).then((value) async{
+        await UserRepository().save(user);
+        await EmployeeRepository().save(EmployeeModel(
+          name: user.name,
+          email: user.email,
+          isActive: false,
+        ));
+      });
+      return 'Berhasil registrasi';
     } on FirebaseAuthException catch (e) {
+      late String error;
       if (e.code == 'weak-password') {
         debugPrint('The password provided is too weak.');
+        error = 'Password lemah!';
       } else if (e.code == 'email-already-in-use') {
         debugPrint('The account already exists for that email.');
+        error = 'Email telah terpakai!';
       }
+      return error;
     } catch (e) {
       debugPrint(e.toString());
+      return e.toString();
     }
   }
 
@@ -35,7 +51,8 @@ class UserService {
       sharedPrefModel.email = user.email!;
       sharedPrefModel.role = role;
       if (role != 'admin'){
-        sharedPrefModel.name = 'User';
+        final employee = await EmployeeRepository().findEmployeeByEmail(credential.user?.email ?? '');
+        sharedPrefModel.name = employee?.name;
       }
       return sharedPrefModel;
     } on FirebaseAuthException catch (e) {

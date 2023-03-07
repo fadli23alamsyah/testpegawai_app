@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pegawaiediites_app/models/user_login_request.dart';
+import 'package:pegawaiediites_app/models/user_register_request.dart';
 import 'package:pegawaiediites_app/routes/route_name.dart';
 import 'package:pegawaiediites_app/screens/widgets/alert.dart';
 import 'package:pegawaiediites_app/screens/widgets/loading.dart';
-import 'package:pegawaiediites_app/services/shared_preference_service.dart';
 import 'package:pegawaiediites_app/services/user_service.dart';
 
-class LoginController extends GetxController {
+class RegisterController extends GetxController {
   late UserService _userService;
 
   var hidePass = true.obs;
-  var userRequest = UserLoginRequest().obs;
+  var userRequest = UserRegisterRequest().obs;
 
   @override
   void onInit() {
@@ -23,22 +22,19 @@ class LoginController extends GetxController {
     hidePass.value = !hidePass.value;
   }
 
-  void registerClick(){
+  void loginClick(){
     FocusManager.instance.primaryFocus!.unfocus();
-    Get.toNamed(RouteName.registerScreen);
+    Get.toNamed(RouteName.loginScreen);
   }
 
-  Future loginClick() async{
+  Future registerClick() async{
     FocusManager.instance.primaryFocus!.unfocus();
     customLoading();
-    if(userRequest.value.email != null && userRequest.value.password != null){
-      final user = await _userService.login(userRequest.value).whenComplete(() => Get.back());
-      if(user != null){
-        SharedPreferenceService.setSharedPref(user);
-        Get.offNamed(RouteName.homeScreen);
-      }else{
-        customAlert('Periksa kembali email dan password anda!!');
-      }
+    if(userRequest.value.name != null && userRequest.value.email != null && userRequest.value.password != null){
+      await _userService.register(userRequest.value).then((value){
+        Get.back();
+        customAlert(value);
+      });
     }else{
       Get.back();
       customAlert('Input harus terisi!!');

@@ -82,7 +82,7 @@ class LoginScreen extends StatelessWidget {
                             const SizedBox(height: 8),
                             Obx(() => TextFormField(
                                 keyboardType: TextInputType.text,
-                                obscureText: controller.showPass.value,
+                                obscureText: controller.hidePass.value,
                                 decoration: InputDecoration(
                                   labelText: 'Password',
                                   labelStyle: const TextStyle(
@@ -90,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                   suffixIcon: IconButton(
                                     onPressed: () => controller.passwordClick() ,
-                                    icon: Icon(controller.showPass.value ? Icons.visibility : Icons.visibility_off),
+                                    icon: Icon(controller.hidePass.value ? Icons.visibility : Icons.visibility_off),
                                   ),
                                 ),
                                 onChanged: (val) => controller.userRequest.value.password = val,
