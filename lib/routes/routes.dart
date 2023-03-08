@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pegawaiediites_app/routes/route_name.dart';
-import 'package:pegawaiediites_app/screens/details_employee_screen.dart';
+import 'package:pegawaiediites_app/screens/form_employee_screen.dart';
 import 'package:pegawaiediites_app/screens/employee_screen.dart';
 import 'package:pegawaiediites_app/screens/home_screen.dart';
 import 'package:pegawaiediites_app/screens/login_screen.dart';
@@ -33,8 +33,8 @@ class Routes {
       page: () => const EmployeeScreen(),
     ),
     GetPage(
-      name: RouteName.detailsEmployeeScreen,
-      page: () => const DetailsEmployeeScreen(),
+      name: RouteName.formEmployeeScreen,
+      page: () => const FormEmployeeScreen(),
     ),
     GetPage(
       name: RouteName.updateProfileScreen,

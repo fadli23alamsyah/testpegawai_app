@@ -20,4 +20,39 @@ class EmployeeService {
       return false;
     }
   }
+
+  Future<List<EmployeeModel>> allEmployee() async{
+    try{
+      return await EmployeeRepository().getAll();
+    }catch(error){
+      return [];
+    }
+  }
+
+  Future<bool> deleteEmployee(String id) async{
+    try{
+      await EmployeeRepository().remove(id);
+      return true;
+    }catch(error){
+      return false;
+    }
+  }
+
+  Future<bool> saveOrUpdate(EmployeeModel employee) async{
+    late bool isSuccess;
+    if(employee.id != null){
+      try{
+        isSuccess = await EmployeeRepository().update(employee);
+      }catch(error){
+        isSuccess = false;
+      }
+    }else{
+      try{
+        isSuccess = await EmployeeRepository().save(employee);
+      }catch(error){
+        isSuccess = false;
+      }
+    }
+    return isSuccess;
+  }
 }

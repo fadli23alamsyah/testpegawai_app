@@ -4,6 +4,6 @@ class RouteName{
   static const registerScreen = "/register";
   static const homeScreen = "/home";
   static const listEmployeeScreen = "/listemployee";
-  static const detailsEmployeeScreen = "/detailsemployee";
+  static const formEmployeeScreen = "/formemployee";
   static const updateProfileScreen = "/updateprofile";
 }

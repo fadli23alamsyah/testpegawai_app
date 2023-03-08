@@ -23,9 +23,6 @@ class UserRepository {
         .where('email', isEqualTo: email)
         .get().then((QuerySnapshot querySnapshot) {
           return querySnapshot.docs[0]["role"];
-          // for (var doc in querySnapshot.docs) {
-          // debugPrint(doc["role"]);
-          // }
       });
       return role;
     }catch(error){

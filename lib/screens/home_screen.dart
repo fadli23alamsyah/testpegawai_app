@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pegawaiediites_app/controllers/home_controller.dart';
 import 'package:pegawaiediites_app/screens/employee_screen.dart';
-import 'package:pegawaiediites_app/screens/update_profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

@@ -22,6 +22,7 @@ class UserService {
           isActive: false,
         ));
       });
+      debugPrint(credential);
       return 'Berhasil registrasi';
     } on FirebaseAuthException catch (e) {
       late String error;
